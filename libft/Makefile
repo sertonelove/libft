@@ -6,13 +6,15 @@
 #    By: cpataki <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/09/05 16:14:06 by cpataki           #+#    #+#              #
-#    Updated: 2019/09/12 19:40:25 by cpataki          ###   ########.fr        #
+#    Updated: 2020/02/03 18:26:56 by cpataki          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-CFLAGS = -Wall -Werror -Wextra -I. -c
+INCLUDES = -I ./includes
+
+CFLAGS = -Wall -Werror -Wextra $(INCLUDES) -c
 
 SRCS = ft_atoi.c \
 	   ft_bzero.c \
@@ -78,12 +80,14 @@ SRCS = ft_atoi.c \
 	   ft_strtrim.c \
 	   ft_tolower.c \
 	   ft_toupper.c \
+	   get_next_line.c \
+	   ft_wdcounter.c \
 
 OBJECTS = $(SRCS:%.c=%.o)
 
 all: $(NAME)
 
-$(NAME): $(OBJECTS) libft.h
+$(NAME): $(OBJECTS) ./includes
 	ar rc $(NAME) $(OBJECTS)
 #	ranlib $(NAME)
 

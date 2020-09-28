@@ -6,14 +6,26 @@
 /*   By: cpataki <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/05 16:48:28 by cpataki           #+#    #+#             */
-/*   Updated: 2019/09/11 20:09:17 by cpataki          ###   ########.fr       */
+/*   Updated: 2020/02/03 18:27:53 by cpataki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
 # include <string.h>
 # include <stdlib.h>
+# include <fcntl.h>
+# include <unistd.h>
+
+# define BUFF_SIZE 100
+
+# define GNL_ERROR -1
+# define GNL_FINISH 0
+# define GNL_OK 1
+
+# define MAX(a, b) (a > b ? a : b)
+# define MOD(a) (a < 0 ? -a : a)
 
 int					ft_ischar(int c);
 int					ft_isdigit(int c);
@@ -24,8 +36,8 @@ int					ft_memcmp(const void *s1, const void *s2, size_t n);
 char				*ft_strcpy(char *dst, const char *src);
 char				*ft_strdup(const char *s1);
 size_t				ft_strlen(const char *str);
-void				*ft_memcpy(void *restrict dst,
-		const void *restrict src, size_t n);
+void				*ft_memcpy(void *dst,
+		const void *src, size_t n);
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putchar(char c);
@@ -76,6 +88,7 @@ char				*ft_strstr(const char *haystack, const char *needle);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
+int					ft_wdcounter(char *str, char c);
 
 typedef struct		s_list
 {
@@ -84,6 +97,14 @@ typedef struct		s_list
 	struct s_list	*next;
 }					t_list;
 
+typedef struct		s_gnl
+{
+	int				fd;
+	char			*rest;
+	struct s_gnl	*next;
+}					t_gnl;
+
+int					get_next_line(const int fd, char **line);
 t_list				*ft_lstnew(void const *content, size_t content_size);
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 void				ft_lstdel(t_list **alst, void (*del)(void *, size_t));

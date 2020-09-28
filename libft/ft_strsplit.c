@@ -6,7 +6,7 @@
 /*   By: cpataki <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 18:57:29 by cpataki           #+#    #+#             */
-/*   Updated: 2019/09/12 16:36:47 by cpataki          ###   ########.fr       */
+/*   Updated: 2019/09/14 16:19:12 by cpataki          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ char			**ft_strsplit(char const *s, char c)
 			return (ft_clear(str));
 		str[j] = ft_strncpy(str[j], s + i, ft_len(s + i, c));
 		str[j][ft_len(s + i, c)] = '\0';
-		j++;
 		while (s[i] && s[i] != c)
 			i++;
+		j++;
 	}
 	str[j] = NULL;
 	return (str);
